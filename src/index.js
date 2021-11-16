@@ -83,6 +83,10 @@ app.get('/profile',isLoggedIn,(req, res) => {
     res.send(req.user);
 })
 
+app.get("/",(req,res)=>{
+    res.send("Hello")
+})
+
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
