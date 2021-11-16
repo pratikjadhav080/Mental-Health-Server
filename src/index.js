@@ -79,7 +79,7 @@ app.get( '/auth/google/callback',
 
 app.post("/register", register);
 app.post("/login", login);
-app.get('/getuser',(req, res) => {
+app.get('/profile',(req, res) => {
     res.send(req.user);
 })
 
