@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
     console.log("hereeee",req.body.postid)
 
     axios
-    .patch(`http://localhost:7765/posts/increase/${req.body.postid}`, { replycount:1 })
+    .patch(`https://blueaura.herokuapp.com/posts/increase/${req.body.postid}`, { replycount:1 })
     .then(res => {
         console.log("data", res.data)
     })
