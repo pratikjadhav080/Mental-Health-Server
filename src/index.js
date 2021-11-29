@@ -15,7 +15,7 @@ const likeController = require("./controllers/likeController");
 const slotController = require("./controllers/slotController");
 const appointmentController = require("./controllers/appointmentController");
 
-app.use(cors({origin: 'http://localhost:3000', credentials: true}));
+app.use(cors({origin: process.env.FRONTEND_URL, credentials: true}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -52,10 +52,9 @@ app.get('/auth/facebook',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-   res.redirect('http://localhost:3000/blueaura');
+   res.redirect(`${process.env.FRONTEND_URL}/blueaura`);
   });
 
-  
 //---------------google auth----------//
 
 app.get("/auth/google/failure", function(req, res) {
@@ -71,7 +70,7 @@ app.get( '/auth/google/callback',
     passport.authenticate( 'google', {
         failureRedirect: '/auth/google/failure'
 }), function(req, res) {
-    res.redirect('http://localhost:3000/blueaura')
+    res.redirect(`${process.env.FRONTEND_URL}/blueaura`)
 });
 
 
@@ -79,7 +78,7 @@ app.get( '/auth/google/callback',
 
 app.post("/register", register);
 app.post("/login", login);
-app.get('/profile',(req, res) => {
+app.get('/profile',isLoggedIn,(req, res) => {
     res.send(req.user);
 })
 
@@ -90,7 +89,7 @@ app.get("/",(req,res)=>{
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
-    res.redirect('http://localhost:3000');
+    res.redirect(process.env.FRONTEND_URL);
 }
 //isLoggedIn
 

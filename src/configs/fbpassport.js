@@ -9,7 +9,7 @@ const {newToken} = require("../controllers/authController")
 passport.use(new FacebookStrategy({
   clientID: process.env.APP_ID,
   clientSecret: process.env.APP_SECRET,
-  callbackURL: "https://blueaura.herokuapp.com/auth/facebook/callback",
+  callbackURL: `${process.env.BACKEND_URL}/auth/facebook/callback`,
   profileFields: ['id', 'displayName', 'email']
 },
 
