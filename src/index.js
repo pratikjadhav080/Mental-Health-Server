@@ -78,6 +78,7 @@ app.get( '/auth/google/callback',
 
 app.post("/register", register);
 app.post("/login", login);
+
 app.get('/profile',isLoggedIn,(req, res) => {
     res.send(req.user);
 })
@@ -91,6 +92,5 @@ function isLoggedIn(req, res, next) {
         return next();
     res.redirect(process.env.FRONTEND_URL);
 }
-//isLoggedIn
 
 module.exports = app;

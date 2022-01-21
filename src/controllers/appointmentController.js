@@ -48,7 +48,7 @@ router.get("/user/:userid", async (req, res) => {
 
     console.log(today)
 
-    let upcoming = appointment.filter((item)=>item.date>today)
+    let upcoming = appointment.filter((item)=>item.date>=today)
 
     coming = upcoming.length?upcoming[0]:null
 
